@@ -40,8 +40,8 @@
                     </tr>
                 </tbody>
             </table>
-            <agm-map id="map" [latitude]="lat" [longitude]="lon" (mapReady)="mapReadyHandler($event)">
-                <agm-marker [latitude]="lat" [longitude]="lon"></agm-marker>
+            <agm-map id="map" [latitude]="lat" [longitude]="lng" (mapReady)="mapReadyHandler($event)">
+                <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
             </agm-map>
         </div>
         <ng-template #waiting>

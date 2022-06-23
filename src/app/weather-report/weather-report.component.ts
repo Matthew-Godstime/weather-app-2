@@ -10,7 +10,7 @@ import { WeatherService } from '../weather.service';
 export class WeatherReportComponent implements OnInit, OnDestroy {
 
   public lat!: number;
-  public lon!: number;
+  public lng!: number;
   public weather!: any;
   public icon: any;
   public subscription!: Subscription;
@@ -18,7 +18,6 @@ export class WeatherReportComponent implements OnInit, OnDestroy {
   public loading!: boolean;
   public map!: google.maps.Map<Element>;
   public mapClickListener!: google.maps.MapsEventListener;
-  public zone: any;
 
   constructor(private weatherService: WeatherService) { }
 
@@ -28,8 +27,8 @@ export class WeatherReportComponent implements OnInit, OnDestroy {
     this.map = map;
     this.mapClickListener = this.map.addListener('click', (e: google.maps.MouseEvent) => {
       this.lat = e.latLng.lat();
-      this.lon = e.latLng.lng();
-      this.subscription = this.weatherService.getWeatherDataByCoords(this.lat, this.lon).subscribe(data => {
+      this.lng = e.latLng.lng();
+      this.subscription = this.weatherService.getWeatherDataByCoords(this.lat, this.lng).subscribe(data => {
         this.weather = data;
       })
       console.log(e.latLng.lat(), e.latLng.lng());
@@ -40,7 +39,7 @@ export class WeatherReportComponent implements OnInit, OnDestroy {
     this.subscription = this.weatherService.getWeatherDataByCityName(city).subscribe((data: any) => {
       this.weather = data;
       this.lat = data.coord.lat;
-      this.lon = data.coord.lon;
+      this.lng = data.coord.lon;
       this.icon = this.weatherService.getIcon(data);
       console.log(data);
     })
@@ -51,8 +50,8 @@ export class WeatherReportComponent implements OnInit, OnDestroy {
     if ('geolocation' in navigator) {
       navigator.geolocation.watchPosition((success) => {
         this.lat = success.coords.latitude;
-        this.lon = success.coords.longitude;
-        this.weatherService.getWeatherDataByCoords(this.lat, this.lon).subscribe(data => {
+        this.lng = success.coords.longitude;
+        this.weatherService.getWeatherDataByCoords(this.lat, this.lng).subscribe(data => {
           this.weather = data;
           this.icon = this.weatherService.getIcon(this.weather);
         })

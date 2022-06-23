@@ -14,10 +14,10 @@ export class WeatherService {
 
   constructor(private http: HttpClient) { }
 
-  public getWeatherDataByCoords(lat: number, lon: number): Observable<object> {
+  public getWeatherDataByCoords(lat: number, lng: number): Observable<object> {
     const params = new HttpParams()
       .set('lat', lat)
-      .set('lon', lon)
+      .set('lon', lng)
       .set('units', 'imperial')
       .set('appid', this._apiKey);
     return this.http.get(this._url, { params });
