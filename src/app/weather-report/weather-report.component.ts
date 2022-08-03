@@ -14,7 +14,7 @@ export class WeatherReportComponent implements OnInit, OnDestroy {
   public weather!: any;
   public icon: any;
   public subscription!: Subscription;
-  public locationDeinedEnableCity: boolean = false;
+  public locationDeniedEnableCity: boolean = false;
   public loading!: boolean;
   public map!: google.maps.Map<Element>;
   public mapClickListener!: google.maps.MapsEventListener;
@@ -48,7 +48,8 @@ export class WeatherReportComponent implements OnInit, OnDestroy {
   // Promt user to Allow App to access their location
   public getLocation(): void {
     if ('geolocation' in navigator) {
-      navigator.geolocation.watchPosition((success) => {
+      navigator.geolocation.getCurrentPosition((success) => {
+        // Changed the geolocation from WatchPosition to getCurrentLocation
         this.lat = success.coords.latitude;
         this.lng = success.coords.longitude;
         this.weatherService.getWeatherDataByCoords(this.lat, this.lng).subscribe(data => {
@@ -57,7 +58,7 @@ export class WeatherReportComponent implements OnInit, OnDestroy {
         })
       }, (error) => {
         if (error.code == error.PERMISSION_DENIED) {
-          this.locationDeinedEnableCity = true;
+          this.locationDeniedEnableCity = true;
         }
       })
     }

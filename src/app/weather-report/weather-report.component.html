@@ -3,9 +3,9 @@
         <div *ngIf="weather; else waiting">
             <div class="col-sm-12 text-center">
                 <div class="input-group mt-5">
-                    <input type="text" class="form-control" #userInput placeholder="Enter city name">
+                    <input type="text" class="form-control" #userInput placeholder="Enter city name" (keyup.enter)="getCity(userInput.value)">
                     <div class="input-group-append">
-                        <button class="input-group-text btn btn-outline-primary"
+                        <button class="input-group-text btn btn-outline-primary ms-3"
                             (click)="getCity(userInput.value)">Search</button>
                     </div>
                 </div>
@@ -45,9 +45,9 @@
             </agm-map>
         </div>
         <ng-template #waiting>
-            <div *ngIf="locationDeinedEnableCity">
+            <div *ngIf="locationDeniedEnableCity">
                 <img class="waiting" src="../../assets/ezgif.com-gif-maker.gif" alt="">
-                <p class="waiting">Waiting for your input</p>
+                <p class="waiting">Your Location is turned Off, So Waiting for your input</p>
             </div>
 
             <div class="input-group mt-5">
