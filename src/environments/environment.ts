@@ -4,10 +4,10 @@
 
 export const environment = {
   production: false,
-  _url: 'weatherAPI',
-  _iconUrl: 'WeatherIconApi',
-  _weatherApiKey: 'WeatherApiKey',
-  _googleMapApiKey: 'GoogleApiKey',
+  _url: 'weather api url',
+  _iconUrl: 'weather api Icon url',
+  _weatherApiKey: 'weather api key',
+  _googleMapApiKey: 'google api key',
 };
 
 /*

@@ -51,7 +51,7 @@
             </div>
 
             <div class="input-group mt-5">
-                <input type="text" class="form-control" #userInput placeholder="Enter city name">
+                <input type="text" class="form-control" #userInput placeholder="Enter city name" (keyup.enter)="getCity(userInput.value)">
                 <div class="input-group-append">
                     <button class="input-group-text btn btn-outline-primary"
                         (click)="getCity(userInput.value)">Search</button>
